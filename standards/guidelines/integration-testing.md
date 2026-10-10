@@ -26,7 +26,8 @@ HTTP layer, the calls to other services. Tags: see `../GUIDELINES.md`, "How to r
   `@MockitoBean` for each service it calls. Assert the status, the headers and the JSON body,
   error responses included.
 - **IT-7** `review` — Test a repository query with `@DataJpaTest`, against the Testcontainers
-  database (`@AutoConfigureTestDatabase(replace = Replace.NONE)`).
+  database. Spring Boot 3.4 and later keep a `@ServiceConnection` database by default; before
+  3.4, add `@AutoConfigureTestDatabase(replace = Replace.NONE)`.
 
 ## Full integration tests
 
