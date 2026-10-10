@@ -1,6 +1,8 @@
 # Spec: Make the harness a starter that others copy once
 
-Status: open
+Status: closed — 2026-10-10
+Permanent home: `README.md` (section "Make your own copy"), `docs/customizing.md`,
+`.github/workflows/test.yml`. Both release blockers below are done.
 Source: conversation of 2026-10-10. The owner decided that each company or person copies the
 harness once, as a starter, and customizes the copy. The starter sends no updates to a copy
 (ADR-0006).
