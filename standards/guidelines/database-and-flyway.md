@@ -1,6 +1,6 @@
 # Database and Flyway migrations
 
-Status: draft. Read this file before you write SQL, a Flyway migration, a JPA entity or a
+Read this file before you write SQL, a Flyway migration, a JPA entity or a
 repository query.
 
 The examples use PostgreSQL. For another engine, use its equivalent type. Tags: see
@@ -38,7 +38,8 @@ The examples use PostgreSQL. For another engine, use its equivalent type. Tags: 
 - **DB-11** `commit-check` — A migration file is
   `src/main/resources/db/migration/V<yyyyMMddHHmm>__<description>.sql`. The version is the UTC
   time of creation; it does not collide between branches. `<description>` is lowercase
-  `snake_case`.
+  `snake_case`. Set `spring.flyway.out-of-order=true`, so that a migration from a branch that
+  merges later than a newer one still runs.
 - **DB-12** `commit-check` — Never change, rename or delete a migration that the default branch
   has. Fix a mistake with a new migration.
 - **DB-13** `review` — One migration makes one logical change. Do not mix a schema change with a

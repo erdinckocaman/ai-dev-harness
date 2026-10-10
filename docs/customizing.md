@@ -29,10 +29,10 @@ A rule change touches two places: the text in `standards/guidelines/` and the va
 
 ## Approve your standards
 
-The starter's standards are a draft. Three files say so in a `Status: draft` line:
-`standards/GUIDELINES.md`, `standards/checks/architecture.properties` and
-`standards/checks/commit-check.conf`. Review the rules, change the ones that do not fit your
-company, then remove the draft line from all three files.
+The starter owner approved the standards for the starter, not for your company. Review the
+rules, and change the ones that do not fit. Then set the `Status:` line of
+`standards/GUIDELINES.md` to your own approval and its date. That line is the only status of the
+standards.
 
 The file header check is opt-in, because a header text belongs to an organization. To use it, set
 `FILE_HEADER` in a project's `service.env` (`kit/scripts/README.md`, section "`check.sh`").

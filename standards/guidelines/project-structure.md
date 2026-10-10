@@ -1,6 +1,6 @@
 # Project structure
 
-Status: draft. Read this file before you add a class, a package, a module or a dependency, and
+Read this file before you add a class, a package, a module or a dependency, and
 before you edit `pom.xml` or `application*.yml`.
 
 The structure is a layered architecture. It fits a service with one bounded context and mostly

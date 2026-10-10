@@ -1,6 +1,6 @@
 # Core principles
 
-Status: draft. Every task starts with this file.
+Every task starts with this file.
 
 These rules apply to every change in every service. The other guideline files add rules for a
 kind of file or a kind of change. Tags: see `../GUIDELINES.md`, "How to read a rule".

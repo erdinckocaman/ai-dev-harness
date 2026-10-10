@@ -1,6 +1,6 @@
 # Error handling and logging
 
-Status: draft. Read this file before you throw, catch or map an exception, add a log line, or
+Read this file before you throw, catch or map an exception, add a log line, or
 call another service.
 
 Tags: see `../GUIDELINES.md`, "How to read a rule".

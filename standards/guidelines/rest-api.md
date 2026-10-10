@@ -1,6 +1,6 @@
 # REST API
 
-Status: draft. Read this file before you add or change an HTTP endpoint, a request or response
+Read this file before you add or change an HTTP endpoint, a request or response
 type, or a status code. Review entry point: the "Review checklist" section at the end.
 
 Tags: see `../GUIDELINES.md`, "How to read a rule". Error bodies: `error-handling-and-logging.md`.

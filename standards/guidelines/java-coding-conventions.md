@@ -1,6 +1,6 @@
 # Java coding conventions
 
-Status: draft. Read this file for any `.java` file, main or test.
+Read this file for any `.java` file, main or test.
 
 Target: Java 21 or later, Spring Boot 3 or later. Tags: see `../GUIDELINES.md`, "How to read a
 rule". The `checkstyle` and `archunit` rules apply to the files that `check.sh` scans; ArchUnit

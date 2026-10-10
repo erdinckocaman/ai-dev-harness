@@ -7,7 +7,6 @@
   checks (standards/guidelines/*.md), so a finding names the rule: "... [JAVA-1]".
   kit/scripts/check.sh runs it on src/main/java and src/test/java of every module of the
   service repository. Change a limit here; it is the only place that holds it.
-  Status: draft, like the guidelines.
 -->
 <module name="Checker">
   <property name="charset" value="UTF-8"/>

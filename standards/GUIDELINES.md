@@ -1,6 +1,7 @@
 # Coding standards — routing table
 
-Status: draft. The owner has not approved the rules yet.
+Status: approved by the starter owner on 2026-10-10. In a copy, the copy's owner reviews the
+rules and sets this line (`docs/customizing.md`, "Approve your standards").
 
 This file is the entry point of the coding standards for every service in this workspace. It
 does not hold rules. It tells you which guideline files a task needs, so that you read only what

@@ -1,6 +1,6 @@
 # Testing strategy
 
-Status: draft. Read this file before you write, move or delete a test. Then read
+Read this file before you write, move or delete a test. Then read
 `unit-testing.md` or `integration-testing.md` for the kind of test you write.
 
 Tags: see `../GUIDELINES.md`, "How to read a rule". The `checkstyle` rules here apply to the

@@ -1,6 +1,6 @@
 # Time and time zones
 
-Status: draft. Read this file before you create, parse, store or return a date, a time or a
+Read this file before you create, parse, store or return a date, a time or a
 timestamp, call `now()`, or pick a time zone.
 
 Tags: see `../GUIDELINES.md`, "How to read a rule".

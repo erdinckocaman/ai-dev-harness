@@ -230,9 +230,10 @@ base package of the layers is its package).
   the source folders it is given, without the service's build.
 - **The working tree counts.** The conflict-marker and migration checks read the files as they
   are now, so you can run `check.sh` before you commit. The message checks read the commits.
-- **Merge and revert commits.** A merge commit (two parents) and a header that starts with
-  `Revert "` are exempt from CORE-11 to CORE-13.
-- **The file header is opt-in.** The draft standards have no header rule, because a header
+- **Exempt commits.** A merge commit (two parents), a header that starts with `Revert "`, and a
+  header that starts with `fixup!`, `squash!` or `WIP` (`FIXUP_HEADER`) are exempt from CORE-11
+  to CORE-13. The squash merge removes them.
+- **The file header is opt-in.** The standards have no header rule, because a header
   text belongs to an organization. Put the header lines in a file (for example
   `projects/<name>/file-header.txt`) and set `FILE_HEADER=file-header.txt`. The check compares
   the first lines of each Java source with the file, character for character.

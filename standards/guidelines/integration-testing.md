@@ -1,6 +1,6 @@
 # Integration testing
 
-Status: draft. Read this file with `testing-strategy.md` when you write a slice test or an
+Read this file with `testing-strategy.md` when you write a slice test or an
 integration test.
 
 An integration test proves that the parts work together: the Spring wiring, the database, the
