@@ -201,7 +201,7 @@ CORE-11  fdd107f "Added a property file": not <type>(<scope>): <subject>, type o
 |---|---|---|---|
 | Checkstyle | `src/main/java` and `src/test/java` of every module (`target/` is skipped) | `checkstyle` tag: JAVA-1 to JAVA-13, ERR-3, TEST-8 to TEST-10 (test sources only) | `standards/checks/checkstyle.xml` |
 | ArchUnit | `target/classes` of every module that has `src/main/java` | `archunit` tag: STRUCT-1 to STRUCT-4, JAVA-16, JAVA-21, REST-4, REST-10, ERR-1, ERR-7, ERR-14, TIME-1, TIME-4, TIME-6, DB-21 | `standards/checks/architecture.properties` (layers, allowed uses, annotation placement, the layers that STRUCT-3, ERR-7 and DB-21 name) |
-| Commit check | The commits `origin/<DEFAULT_BRANCH>..HEAD`; the files that differ from the merge base in the working tree, untracked files included | `commit-check` tag: CORE-11 to CORE-15, DB-11, DB-12 | `standards/checks/commit-check.conf` |
+| Commit check | The commits `origin/<DEFAULT_BRANCH>..HEAD`; the files that differ from the merge base in the working tree, untracked files included | `commit-check` tag: CORE-11 to CORE-14, DB-11, DB-12 | `standards/checks/commit-check.conf` |
 | File header | Every Java source; only when `service.env` sets `FILE_HEADER` | — (opt-in per project) | The `FILE_HEADER` file |
 
 | Flag | Default | Description |

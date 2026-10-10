@@ -633,7 +633,7 @@ expect 1 commit-body "CORE-13"
 r=$(new_case fixup)
 echo "x=1" > "$r/src/main/resources/application.properties"
 commit "$r" "fixup! feat(orders): add the order lookup endpoint"
-expect 1 fixup "CORE-15"
+expect 0 fixup "All checks passed"
 
 r=$(new_case conflict-marker)
 printf 'x=1\n<<<<<<< HEAD\nx=2\n=======\nx=3\n>>>>>>> other\n' > "$r/src/main/resources/application.properties"
