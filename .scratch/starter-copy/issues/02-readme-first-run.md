@@ -1,6 +1,6 @@
 # 02 — README: make a copy and the first run
 
-Status: ready-for-agent
+Status: done — README section "Make your own copy", steps 1–7
 Blocked by: 01
 
 **What to build:** A README section for a new owner, in this order:
@@ -16,5 +16,5 @@ Blocked by: 01
 6. Add the first service with the `new-project` skill.
 7. Continue with the customization guide (ticket 03).
 
-- [ ] Every tool in the list is used by a script, and every tool that a script needs is in the list.
-- [ ] Every command in the section runs on a clean clone.
+- [x] Every tool in the list is used by a script, and every tool that a script needs is in the list.
+- [x] Every command in the section runs on a clean clone.
