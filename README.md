@@ -109,7 +109,7 @@ from the repository. It leaves every change uncommitted for your review.
 
 ### 7. Customize the copy
 
-Follow `docs/customizing.md`. Approve or change the standards first: they start as a draft.
+Follow `docs/customizing.md`. Review the standards first: the starter owner chose them, not you.
 
 ## The standards gate runs under Claude Code only
 

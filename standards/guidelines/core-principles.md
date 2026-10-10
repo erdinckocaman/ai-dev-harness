@@ -1,6 +1,6 @@
 # Core principles
 
-Status: draft. Every task starts with this file.
+Every task starts with this file.
 
 These rules apply to every change in every service. The other guideline files add rules for a
 kind of file or a kind of change. Tags: see `../GUIDELINES.md`, "How to read a rule".
@@ -35,8 +35,10 @@ kind of file or a kind of change. Tags: see `../GUIDELINES.md`, "How to read a r
 
 ## Commits
 
-A merge commit (more than one parent) and a header that git writes for a revert
-(`Revert "…"`) are exempt from CORE-11 to CORE-13.
+A pull request is merged as one squash commit. Its header is the PR title. A merge commit
+(more than one parent), a header that git writes for a revert (`Revert "…"`), and a header that
+starts with `fixup!`, `squash!` or `WIP` are exempt from CORE-11 to CORE-13. The squash merge
+removes them.
 
 - **CORE-11** `commit-check` — The header has the form `<type>: <subject>` or
   `<type>(<scope>): <subject>`. `<type>` is one of `feat`, `fix`, `refactor`, `perf`, `test`,
@@ -48,8 +50,7 @@ A merge commit (more than one parent) and a header that git writes for a revert
   fewer, except a line that holds a URL.
 - **CORE-14** `commit-check` — No file that the branch changes contains a conflict marker: a
   line that starts with `<<<<<<< `, `>>>>>>> `, or is exactly `=======`.
-- **CORE-15** `commit-check` — No header on the branch starts with `fixup!`, `squash!` or
-  `WIP`. Squash them before review.
 - **CORE-16** `review` — Write the subject in the imperative mood: "add order export", not
   "added order export". The body says why, not what.
-- **CORE-17** `review` — One logical change per commit. Each commit compiles.
+- **CORE-17** `review` — One logical change per pull request. The PR title is the header of the
+  squash commit: it follows CORE-11, CORE-12 and CORE-16.

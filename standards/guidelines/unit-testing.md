@@ -1,6 +1,6 @@
 # Unit testing
 
-Status: draft. Read this file with `testing-strategy.md` when you write a unit test.
+Read this file with `testing-strategy.md` when you write a unit test.
 
 A unit test proves the logic of one class, fast and without infrastructure. Tags: see
 `../GUIDELINES.md`, "How to read a rule".

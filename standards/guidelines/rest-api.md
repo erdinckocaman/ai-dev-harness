@@ -1,6 +1,6 @@
 # REST API
 
-Status: draft. Read this file before you add or change an HTTP endpoint, a request or response
+Read this file before you add or change an HTTP endpoint, a request or response
 type, or a status code. Review entry point: the "Review checklist" section at the end.
 
 Tags: see `../GUIDELINES.md`, "How to read a rule". Error bodies: `error-handling-and-logging.md`.
@@ -53,11 +53,13 @@ Date and time values: `time-and-time-zones.md`.
 - **REST-12** `review` — Validate a request body with `@Valid` and Bean Validation constraints on
   the record. Put constraints on path and query parameters too.
 - **REST-13** `review` — A list endpoint pages its result: query parameters `page` (from 0) and
-  `size` (default 20, maximum 100), and `sort=<field>,asc|desc`. The response is
-  `{"items": [...], "page": {"number", "size", "totalElements", "totalPages"}}`. Do not
-  serialize a Spring Data `Page` directly.
-- **REST-14** `review` — A field that has no value is left out of the JSON or is `null`; pick one
-  per service. An empty list is `[]`, never left out.
+  `size` (default 20, maximum 100: `spring.data.web.pageable.max-page-size=100`), and
+  `sort=<field>,asc|desc`. The response is the Spring Data `PagedModel`:
+  `{"content": [...], "page": {"size", "number", "totalElements", "totalPages"}}`. Return
+  `new PagedModel<>(page)`, or set `pageSerializationMode = VIA_DTO` on
+  `@EnableSpringDataWebSupport`. Do not serialize a `PageImpl`.
+- **REST-14** `review` — Leave a field that has no value out of the JSON:
+  `spring.jackson.default-property-inclusion=non_null`. An empty list is `[]`, never left out.
 
 ## Compatibility
 

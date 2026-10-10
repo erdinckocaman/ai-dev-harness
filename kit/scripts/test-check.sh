@@ -42,7 +42,8 @@ for a in org.springframework.boot.autoconfigure.SpringBootApplication \
   org.springframework.web.bind.annotation.GetMapping \
   org.springframework.transaction.annotation.Transactional \
   org.springframework.beans.factory.annotation.Autowired \
-  jakarta.persistence.Entity; do
+  jakarta.persistence.Entity \
+  lombok.Getter; do
   stub "$a"
 done
 put "$tmp/stubs-src/org/springframework/data/jpa/repository/JpaRepository.java" <<'EOF'
@@ -316,6 +317,35 @@ EOF
 compile "$r"; commit "$r" "feat: look up order names"
 expect 1 layer-breach "STRUCT-2"
 
+# STRUCT-2: a service reads its settings from a record in config.
+r=$(new_case service-uses-config)
+put "$r/src/main/java/com/example/orders/config/OrderLimits.java" <<'EOF'
+package com.example.orders.config;
+
+public record OrderLimits(int maxItems) {
+}
+EOF
+put "$r/src/main/java/com/example/orders/service/OrderLimitService.java" <<'EOF'
+package com.example.orders.service;
+
+import com.example.orders.config.OrderLimits;
+
+public class OrderLimitService {
+
+    private final OrderLimits limits;
+
+    public OrderLimitService(OrderLimits limits) {
+        this.limits = limits;
+    }
+
+    public boolean allows(int items) {
+        return items <= limits.maxItems();
+    }
+}
+EOF
+compile "$r"; commit "$r" "feat: limit the order items"
+expect 0 service-uses-config "All checks passed"
+
 r=$(new_case repository-placement)
 put "$r/src/main/java/com/example/orders/service/OrderRepository.java" <<'EOF'
 package com.example.orders.service;
@@ -375,6 +405,17 @@ public class BracesSeed {
         if (value < 0) return -1;
         return 1;
     }
+}
+EOF
+put "$seed/LombokSeed.java" <<'EOF'
+package com.example.orders.domain;
+
+import lombok.Getter;
+
+@Getter
+public class LombokSeed {
+
+    private int count;
 }
 EOF
 put "$seed/ImportSeed.java" <<'EOF'
@@ -493,8 +534,26 @@ compile "$r"; commit "$r" "feat: seed the checkstyle rules"
 expect_findings checkstyle-seeds JAVA-2:TabSeed.java JAVA-2:IndentSeed.java JAVA-3:TrailingSeed.java \
   JAVA-3:NoNewlineSeed.java JAVA-4:BracesSeed.java JAVA-5:ImportSeed.java JAVA-6:TwoTypesSeed.java \
   JAVA-7:NameSeed.java JAVA-8:OrderHTTPSeed.java JAVA-10:LongMethodSeed.java \
-  JAVA-11:ParametersSeed.java JAVA-12:EqualsSeed.java JAVA-13:LiteralSeed.java ERR-3:CatchSeed.java \
+  JAVA-11:ParametersSeed.java JAVA-12:EqualsSeed.java JAVA-13:LiteralSeed.java \
+  JAVA-20:LombokSeed.java ERR-3:CatchSeed.java \
   TEST-8:JunitFourSeedTest.java TEST-9:AssertionsSeedTest.java
+
+# The logger field "log" (ERR-15) is exempt from the constant names of JAVA-7.
+r=$(new_case logger-name)
+put "$r/src/main/java/com/example/orders/domain/OrderLog.java" <<'EOF'
+package com.example.orders.domain;
+
+public final class OrderLog {
+
+    private static final Object log = new Object();
+
+    public Object logger() {
+        return log;
+    }
+}
+EOF
+compile "$r"; commit "$r" "feat: add the order log"
+expect 0 logger-name "All checks passed"
 
 # One seeded violation per ArchUnit rule, each in its own class; one check.sh run.
 r=$(new_case archunit-seeds)
@@ -633,7 +692,7 @@ expect 1 commit-body "CORE-13"
 r=$(new_case fixup)
 echo "x=1" > "$r/src/main/resources/application.properties"
 commit "$r" "fixup! feat(orders): add the order lookup endpoint"
-expect 1 fixup "CORE-15"
+expect 0 fixup "All checks passed"
 
 r=$(new_case conflict-marker)
 printf 'x=1\n<<<<<<< HEAD\nx=2\n=======\nx=3\n>>>>>>> other\n' > "$r/src/main/resources/application.properties"

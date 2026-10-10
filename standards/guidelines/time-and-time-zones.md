@@ -1,6 +1,6 @@
 # Time and time zones
 
-Status: draft. Read this file before you create, parse, store or return a date, a time or a
+Read this file before you create, parse, store or return a date, a time or a
 timestamp, call `now()`, or pick a time zone.
 
 Tags: see `../GUIDELINES.md`, "How to read a rule".
@@ -48,7 +48,7 @@ Tags: see `../GUIDELINES.md`, "How to read a rule".
   (`timestamptz` in PostgreSQL). A date is `date`. Do not store a moment in a timestamp column
   without time zone.
 - **TIME-10** `review` — Run the JVM and the database session in UTC as a safety net
-  (`hibernate.jdbc.time_zone=UTC`). The code does not depend on it.
+  (`spring.jpa.properties.hibernate.jdbc.time_zone=UTC`). The code does not depend on it.
 - **TIME-11** `review` — Tests use `Clock.fixed(...)` and assert on exact values. A test never
   compares with the real current time.
 - **TIME-12** `review` — Format and parse with the `DateTimeFormatter.ISO_*` constants. A custom

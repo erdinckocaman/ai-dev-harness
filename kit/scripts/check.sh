@@ -293,17 +293,14 @@ report() {
   commit_count=$((commit_count + 1))
 }
 
-# check_message <sha> — CORE-11 to CORE-13 and CORE-15 on one commit message.
+# check_message <sha> — CORE-11 to CORE-13 on one commit message.
 check_message() {
   local sha="$1" short msg header subject n=0 line parents
   short="$(git -C "$repo" rev-parse --short "$sha")"
   msg="$(git -C "$repo" log -1 --format=%B "$sha")"
   header="$(printf '%s\n' "$msg" | head -n 1)"
-  if [[ $header =~ $unsquashed ]]; then
-    report CORE-15 "$short \"$header\": squash it before review"
-  fi
   parents="$(git -C "$repo" rev-list --parents -n 1 "$sha" | wc -w)"
-  if [ "$parents" -gt 2 ] || [[ $header == 'Revert "'* ]]; then
+  if [ "$parents" -gt 2 ] || [[ $header == 'Revert "'* ]] || [[ $header =~ $fixup ]]; then
     return
   fi
   if [[ $header =~ $header_pattern ]]; then
@@ -386,7 +383,7 @@ run_commit_check() {
     && scope="$(read_conf "$conf" COMMIT_SCOPE)" \
     && header_max="$(read_conf "$conf" HEADER_MAX)" \
     && body_max="$(read_conf "$conf" BODY_MAX)" \
-    && unsquashed="$(read_conf "$conf" UNSQUASHED_HEADER)" \
+    && fixup="$(read_conf "$conf" FIXUP_HEADER)" \
     && migration_dir="$(read_conf "$conf" MIGRATION_DIR)" \
     && migration_name="$(read_conf "$conf" MIGRATION_NAME)" \
     || { cannot_run "Commit check" "a key is missing in $conf"; return; }

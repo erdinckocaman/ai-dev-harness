@@ -1,6 +1,6 @@
 # Project structure
 
-Status: draft. Read this file before you add a class, a package, a module or a dependency, and
+Read this file before you add a class, a package, a module or a dependency, and
 before you edit `pom.xml` or `application*.yml`.
 
 The structure is a layered architecture. It fits a service with one bounded context and mostly
@@ -33,10 +33,10 @@ forms.
 
   | Layer | May use |
   |---|---|
-  | `web` | `service`, `domain` |
-  | `service` | `domain`, `repository`, `client` |
+  | `web` | `service`, `domain`, `config` |
+  | `service` | `domain`, `repository`, `client`, `config` |
   | `repository` | `domain` |
-  | `client` | `domain` |
+  | `client` | `domain`, `config` |
   | `domain` | — |
   | `config` | every layer |
 
@@ -50,8 +50,9 @@ forms.
 
 ## Build
 
-- **STRUCT-6** `review` — One Maven module per deployable service. A split into modules needs an
-  ADR that says why.
+- **STRUCT-6** `review` — A service is a multi-module Maven reactor with one `*-container` module
+  that starts the application: the shape that the kit scripts assume (`kit/README.md`,
+  "Requirements and limits"). A service that does not fit records the gap in an ADR.
 - **STRUCT-7** `review` — Let the Spring Boot parent or BOM manage dependency versions. Do not
   give a version to a managed dependency. Put every other version in `<properties>`.
 - **STRUCT-8** `review` — A dependency that only tests use has `test` scope.
