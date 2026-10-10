@@ -1,6 +1,6 @@
 # 01 — Hosting, visibility and license
 
-Status: ready-for-human
+Status: done — https://github.com/erdinckocaman/ai-dev-harness (public, template, MIT)
 Blocked by: None
 
 **What to do:** Choose the host and the visibility (public or private) of the starter. Choose a
@@ -9,7 +9,7 @@ setting (on GitHub: Settings → "Template repository").
 
 Human: the owner decides the host, the visibility and the license.
 
-- [ ] The repository has a remote, and the template setting is on.
+- [x] The repository has a remote, and the template setting is on.
 - [x] `LICENSE` is at the root, and the README names the license.
 - [x] If the starter is public: the owner accepts that the commit history shows the author's email.
 
