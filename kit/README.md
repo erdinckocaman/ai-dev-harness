@@ -63,11 +63,10 @@ ai-dev-harness/
 
 ## Quick start
 
-```bash
-cd ~/repo/ai-dev-harness
-cp -R kit/examples/projects/sample-service projects/orders-service
-# edit projects/orders-service/service.env, then:
+Create the project folder with the `new-project` skill (`/new-project <repository path>`) at
+the workspace root, then:
 
+```bash
 cd projects/orders-service
 ../../kit/scripts/set-version.sh               # print the current version
 ../../kit/scripts/run-local.sh --env ~/.ms-kit/local.env
