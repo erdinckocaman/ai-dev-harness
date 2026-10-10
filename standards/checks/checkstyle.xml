@@ -95,9 +95,10 @@
     <module name="LocalVariableName"><property name="id" value="JAVA-7"/></module>
     <module name="LocalFinalVariableName"><property name="id" value="JAVA-7"/></module>
     <module name="RecordComponentName"><property name="id" value="JAVA-7"/></module>
+    <!-- The logger field "log" (ERR-15) is exempt from UPPER_SNAKE_CASE. -->
     <module name="ConstantName">
       <property name="id" value="JAVA-7"/>
-      <property name="format" value="^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"/>
+      <property name="format" value="^(log|[A-Z][A-Z0-9]*(_[A-Z0-9]+)*)$"/>
     </module>
     <module name="PackageName">
       <property name="id" value="JAVA-7"/>
@@ -124,6 +125,12 @@
       <property name="max" value="6"/>
       <property name="ignoreOverriddenMethods" value="true"/>
       <property name="tokens" value="METHOD_DEF, CTOR_DEF"/>
+    </module>
+
+    <!-- JAVA-20: no Lombok. -->
+    <module name="IllegalImport">
+      <property name="id" value="JAVA-20"/>
+      <property name="illegalPkgs" value="lombok"/>
     </module>
 
     <!-- JAVA-12, JAVA-13 -->

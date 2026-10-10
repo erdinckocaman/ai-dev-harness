@@ -50,8 +50,7 @@ Tags: see `../GUIDELINES.md`, "How to read a rule".
 - **ERR-14** `archunit` — Log through SLF4J. Do not use `java.util.logging`, `System.out`,
   `System.err` or `printStackTrace()`.
 - **ERR-15** `review` — Declare the logger as
-  `private static final Logger log = LoggerFactory.getLogger(<Class>.class)`, or use Lombok
-  `@Slf4j`.
+  `private static final Logger log = LoggerFactory.getLogger(<Class>.class)`.
 - **ERR-16** `review` — Use placeholders: `log.info("Order {} created", orderId)`. Do not
   concatenate strings. Pass the exception as the last argument, not `e.getMessage()`.
 - **ERR-17** `review` — Use the levels this way:

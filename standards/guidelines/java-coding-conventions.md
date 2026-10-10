@@ -21,8 +21,9 @@ reads the production classes only, unless a rule says otherwise.
 ## Names
 
 - **JAVA-7** `checkstyle` — Types are `UpperCamelCase`. Methods, fields, parameters and local
-  variables are `lowerCamelCase`. A `static final` constant is `UPPER_SNAKE_CASE`. A package name
-  is lowercase letters and digits only, with no underscore.
+  variables are `lowerCamelCase`. A `static final` constant is `UPPER_SNAKE_CASE`; the logger
+  field `log` (ERR-15) is exempt. A package name is lowercase letters and digits only, with no
+  underscore.
 - **JAVA-8** `checkstyle` — Write an abbreviation as a word: `HttpClient`, `orderId`, not
   `HTTPClient`, `orderID`. No two capital letters follow each other in a name, except in a
   constant.
@@ -55,9 +56,8 @@ reads the production classes only, unless a rule says otherwise.
 
 ## Lombok and mapping
 
-- **JAVA-20** `review` — Lombok is allowed for `@Getter`, `@RequiredArgsConstructor`, `@Builder`
-  and `@Slf4j`. Do not use `@Data`, `@EqualsAndHashCode` or `@ToString` on a JPA entity. Prefer a
-  `record` to `@Value`.
+- **JAVA-20** `checkstyle` — Do not use Lombok: no import from the `lombok` package. Use a
+  `record` for a value type, a constructor for injection (JAVA-16), and a logger field (ERR-15).
 - **JAVA-21** `archunit` — Map between types with plain code or MapStruct. Do not use a
   reflection-based mapper: no dependency on `org.modelmapper..`, `org.dozer..`, or a call to
   `BeanUtils.copyProperties`.
