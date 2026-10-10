@@ -1,0 +1,45 @@
+# Runs the five test scripts of the starter on every push and pull request.
+# The scripts target the macOS bash 3.2 and the BSD tools, so the job runs on macOS
+# with /bin/bash. Every test step runs, also after a failed one, so one run reports
+# every failing script; one failure fails the job.
+name: test
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '21'
+          cache: maven
+          cache-dependency-path: kit/checks/pom.xml
+
+      - name: Install Maven
+        run: command -v mvn || brew install maven
+
+      - name: Standards gate
+        if: ${{ !cancelled() }}
+        run: /bin/bash hooks/test-standards-gate.sh
+
+      - name: Skill catalog
+        if: ${{ !cancelled() }}
+        run: /bin/bash scripts/test-check-skills.sh
+
+      - name: Gate routes
+        if: ${{ !cancelled() }}
+        run: /bin/bash standards/test-check-routes.sh
+
+      - name: new-project
+        if: ${{ !cancelled() }}
+        run: /bin/bash .agents/skills/new-project/scripts/test-new-project.sh
+
+      - name: Build checks
+        if: ${{ !cancelled() }}
+        run: /bin/bash kit/scripts/test-check.sh

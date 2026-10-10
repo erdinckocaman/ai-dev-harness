@@ -16,6 +16,7 @@ ai-dev-harness/
   .agents/skills/        the skill catalog (real files)
   .claude/skills/        symlinks to .agents/skills/
   .claude/settings.json  the standards gate hooks
+  .github/workflows/     CI: the five test scripts on every push and pull request
   scripts/               harness checks (check-skills.sh and its test)
   projects/<name>/       one folder per service: AGENTS.md, CLAUDE.md, service.env,
                          CODEBASE.md, GLOSSARY.md, docs/adr/, acceptance-tests/, .scratch/;
