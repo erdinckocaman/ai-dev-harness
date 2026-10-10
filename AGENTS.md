@@ -47,7 +47,7 @@ for business logic, refactoring, and code review.
 | `docs/agents/` | How the skills use this workspace: the issue tracker, the triage labels, the domain docs |
 | `docs/adr/` | The decisions of the harness itself; a service's decisions live in `projects/<name>/docs/adr/` |
 | `.scratch/<feature-slug>/` | Specs and tickets for work on the harness; a service's tickets live in `projects/<name>/.scratch/` |
-| `.agents/skills/` | The skill catalog (real files): the chain `to-spec` → `to-tickets` → `implement` / `implement-spec` (with `tdd`) → `code-review` → `pr`, plus `pr-review`, `codebase-map`, `codebase-design`, `domain-modeling`, `diagnosing-bugs`, `grilling`, `handoff`, `writing-for-agents`; the kit skills `new-project`, `run-acceptance-tests`, `set-version` |
+| `.agents/skills/` | The skill catalog (real files): the chain `to-spec` → `to-tickets` → `implement` / `implement-spec` (with `tdd`) → `code-review` → `pr`, plus `pr-review`, `codebase-map`, `codebase-design`, `domain-modeling`, `diagnosing-bugs`, `grilling`, `grill-with-docs`, `handoff`, `writing-for-agents`; the kit skills `new-project`, `run-acceptance-tests`, `set-version` |
 | `.claude/skills/` | One symlink per skill, `<name>` → `../../.agents/skills/<name>` (ADR-0004); a new skill needs its link |
 | `hooks/` | The standards gate: `standards-gate.sh` (`pre` blocks an edit in a registered source repository until the routed guidelines are read; `post` records the reads) and its test `test-standards-gate.sh` |
 | `.claude/settings.json` | Wires the gate as Claude Code hooks: `pre` on `Write\|Edit\|MultiEdit\|NotebookEdit`, `post` on `Read\|Bash\|Grep\|Glob` |

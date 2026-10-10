@@ -76,7 +76,6 @@ Run the `ingest` skill on the file.
 Then run /wiki-sync.
 Call the Skill tool with "note".
 Use the `wayfinder` skill.
-Use the `grill-with-docs` skill.
 Use the `improve-codebase-architecture` skill.
 Use the `jira-tasks` skill.
 Use the `pilot-test-handoff` skill.

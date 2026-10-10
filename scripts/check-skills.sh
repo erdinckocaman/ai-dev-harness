@@ -19,7 +19,7 @@ cd "$root" || exit 2
 # Names that come from the personal knowledge base and have no meaning here.
 foreign_re='WIKI\.md|PROJECTS\.md|USER\.md|IDENTITY\.md|WORKPLACES\.md'
 foreign_re+='|(^|[^A-Za-z0-9_.-])(wiki|raw|daily|research|workplaces)/'
-foreign_re+='|\baos\b|\bingest\b|wiki-sync|wayfind|grill-with-docs|improve-codebase-architecture'
+foreign_re+='|\baos\b|\bingest\b|wiki-sync|wayfind|improve-codebase-architecture'
 foreign_re+='|jira-tasks|jira-fetch|test-handoff|setup-matt-pocock|mattpocock'
 
 status=0
