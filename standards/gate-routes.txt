@@ -1,0 +1,58 @@
+# gate-routes.txt -- the routes of the standards gate, as data.
+#
+# The gate (hooks/standards-gate.sh) reads this file. It blocks an edit under a
+# registered source repository until the session has read every guideline that
+# a matching row names. The gate holds no route list of its own.
+#
+# Format: one route per line, three fields separated by '|':
+#
+#   <pattern> | <guideline> | <reason>
+#
+#   pattern    A bash 'case' glob, matched against the ABSOLUTE path of the
+#              edited file. '*' matches any string, '/' included. No whitespace.
+#   guideline  GUIDELINES.md or guidelines/<name>.md, relative to standards/.
+#   reason     One line. The gate prints it when it blocks. No '|' in it.
+#
+# Blank lines and lines that start with '#' are skipped. Space around a field is
+# trimmed. Every matching row applies: the required set is the union of the
+# guidelines of all matching rows, without duplicates. When two matching rows
+# name the same guideline, the gate quotes the reason of the first one.
+#
+# A '*' row is the base set: every guarded edit requires it, and the gate's
+# fail-closed branch (path unknown) requires only the '*' rows.
+#
+# Add a row only for a path-certain rule: the extension, the source root, a
+# test class suffix, the migration folder (docs/adr/0003). A route on the kind
+# of change stays in the GUIDELINES.md table only.
+#
+# Check: bash standards/check-routes.sh (tested by standards/test-check-routes.sh).
+
+# Base set: every guarded edit.
+*                           | GUIDELINES.md                          | the routing table: every edit in a service repository starts here
+*                           | guidelines/core-principles.md          | every task starts here: the simplest verifiable change, surgical diffs, commit rules
+
+# Any Java file, main or test.
+*.java                      | guidelines/java-coding-conventions.md  | you are editing a .java file: format, naming, comments, Lombok, null handling
+
+# Production code and its build: the layer rules decide where a class goes.
+*/src/main/java/*.java      | guidelines/project-structure.md        | you are editing production Java: the layer packages and what each layer may import
+*/pom.xml                   | guidelines/project-structure.md        | you are editing the build: modules, dependencies, versions
+*/src/main/resources/application* | guidelines/project-structure.md  | you are editing application configuration: profiles, properties, secrets
+
+# Test code: the path proves a test, not its kind, so all three apply.
+*/src/test/*.java           | guidelines/testing-strategy.md         | you are editing a test: which kind of test, naming, structure, test data
+*/src/test/*.java           | guidelines/unit-testing.md             | you are editing a test: what a unit test isolates and what it may not touch
+*/src/test/*.java           | guidelines/integration-testing.md      | you are editing a test: Spring contexts, containers, data setup
+*Test.java                  | guidelines/testing-strategy.md         | you are editing a test class: which kind of test, naming, structure, test data
+*Test.java                  | guidelines/unit-testing.md             | you are editing a test class: what a unit test isolates and what it may not touch
+*Test.java                  | guidelines/integration-testing.md      | you are editing a test class: Spring contexts, containers, data setup
+*Tests.java                 | guidelines/testing-strategy.md         | you are editing a test class: which kind of test, naming, structure, test data
+*Tests.java                 | guidelines/unit-testing.md             | you are editing a test class: what a unit test isolates and what it may not touch
+*Tests.java                 | guidelines/integration-testing.md      | you are editing a test class: Spring contexts, containers, data setup
+*IT.java                    | guidelines/testing-strategy.md         | you are editing an integration test class: which kind of test, naming, structure
+*IT.java                    | guidelines/unit-testing.md             | you are editing an integration test class: where the unit/integration line is
+*IT.java                    | guidelines/integration-testing.md      | you are editing an integration test class: Spring contexts, containers, data setup
+
+# SQL and migrations.
+*.sql                       | guidelines/database-and-flyway.md      | you are editing a .sql file: naming, keys, column types, indexes
+*/db/migration/*            | guidelines/database-and-flyway.md      | you are editing a Flyway migration: versions, file names, what a migration may not do

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  The build-check module of the harness (docs/adr/0005-build-checks-run-from-the-harness.md).
+  It is not part of any service build. kit/scripts/check.sh compiles it and builds its
+  classpath, then runs two tools on that classpath against a service repository:
+  - Checkstyle (com.puppycrawl.tools.checkstyle.Main) with standards/checks/checkstyle.xml;
+  - the ArchUnit rules of this module (dev.aidevharness.checks.ArchitectureCheck), with
+    standards/checks/architecture.properties.
+  Change a tool version here; change a rule value in standards/checks/.
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>dev.aidevharness</groupId>
+  <artifactId>build-checks</artifactId>
+  <version>1.0.0</version>
+  <packaging>jar</packaging>
+
+  <properties>
+    <maven.compiler.release>21</maven.compiler.release>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <checkstyle.version>14.1.0</checkstyle.version>
+    <archunit.version>1.5.0</archunit.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.puppycrawl.tools</groupId>
+      <artifactId>checkstyle</artifactId>
+      <version>${checkstyle.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.tngtech.archunit</groupId>
+      <artifactId>archunit</artifactId>
+      <version>${archunit.version}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.14.1</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.9.0</version>
+      </plugin>
+    </plugins>
+  </build>
+</project>

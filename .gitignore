@@ -1,0 +1,3 @@
+.DS_Store
+**/acceptance-tests/reports/
+kit/checks/target/

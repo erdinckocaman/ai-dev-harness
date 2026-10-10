@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC
+  "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+  "https://checkstyle.org/dtds/configuration_1_3.dtd">
+<!--
+  The Checkstyle rules of the standards. Each module's id is the rule ID of the guideline it
+  checks (standards/guidelines/*.md), so a finding names the rule: "... [JAVA-1]".
+  kit/scripts/check.sh runs it on src/main/java and src/test/java of every module of the
+  service repository. Change a limit here; it is the only place that holds it.
+  Status: draft, like the guidelines.
+-->
+<module name="Checker">
+  <property name="charset" value="UTF-8"/>
+  <property name="severity" value="error"/>
+  <property name="fileExtensions" value="java"/>
+
+  <!-- TEST-8 to TEST-10 apply to test sources only. -->
+  <module name="SuppressionSingleFilter">
+    <property name="files" value="[\\/]src[\\/]main[\\/]"/>
+    <property name="id" value="TEST-8"/>
+  </module>
+  <module name="SuppressionSingleFilter">
+    <property name="files" value="[\\/]src[\\/]main[\\/]"/>
+    <property name="id" value="TEST-9"/>
+  </module>
+  <module name="SuppressionSingleFilter">
+    <property name="files" value="[\\/]src[\\/]main[\\/]"/>
+    <property name="id" value="TEST-10"/>
+  </module>
+
+  <!-- JAVA-1: 120 characters; package and import lines and lines with a URL are exempt. -->
+  <module name="LineLength">
+    <property name="id" value="JAVA-1"/>
+    <property name="max" value="120"/>
+    <property name="ignorePattern" value="^(package|import) |^.*https?://\S+.*$"/>
+  </module>
+
+  <!-- JAVA-2: no tab character. -->
+  <module name="FileTabCharacter">
+    <property name="id" value="JAVA-2"/>
+  </module>
+
+  <!-- JAVA-3: no trailing whitespace; a newline at the end of the file. -->
+  <module name="RegexpSingleline">
+    <property name="id" value="JAVA-3"/>
+    <property name="format" value="\s+$"/>
+    <property name="message" value="Line has trailing whitespace."/>
+  </module>
+  <module name="NewlineAtEndOfFile">
+    <property name="id" value="JAVA-3"/>
+  </module>
+
+  <module name="TreeWalker">
+    <!-- JAVA-2: indent with 4 spaces. -->
+    <module name="Indentation">
+      <property name="id" value="JAVA-2"/>
+      <property name="basicOffset" value="4"/>
+      <property name="caseIndent" value="4"/>
+      <property name="throwsIndent" value="4"/>
+      <property name="arrayInitIndent" value="4"/>
+      <property name="lineWrappingIndentation" value="4"/>
+    </module>
+
+    <!-- JAVA-4: braces for every if, else, for, while and do body. -->
+    <module name="NeedBraces">
+      <property name="id" value="JAVA-4"/>
+      <property name="tokens" value="LITERAL_IF, LITERAL_ELSE, LITERAL_FOR, LITERAL_WHILE, LITERAL_DO"/>
+    </module>
+
+    <!-- JAVA-5: no wildcard, unused or redundant import. -->
+    <module name="AvoidStarImport">
+      <property name="id" value="JAVA-5"/>
+    </module>
+    <module name="UnusedImports">
+      <property name="id" value="JAVA-5"/>
+    </module>
+    <module name="RedundantImport">
+      <property name="id" value="JAVA-5"/>
+    </module>
+
+    <!-- JAVA-6: one top-level type per file. -->
+    <module name="OuterTypeNumber">
+      <property name="id" value="JAVA-6"/>
+      <property name="max" value="1"/>
+    </module>
+
+    <!-- JAVA-7: names. -->
+    <module name="TypeName"><property name="id" value="JAVA-7"/></module>
+    <module name="MethodName"><property name="id" value="JAVA-7"/></module>
+    <module name="MemberName"><property name="id" value="JAVA-7"/></module>
+    <module name="StaticVariableName"><property name="id" value="JAVA-7"/></module>
+    <module name="ParameterName"><property name="id" value="JAVA-7"/></module>
+    <module name="LambdaParameterName"><property name="id" value="JAVA-7"/></module>
+    <module name="CatchParameterName"><property name="id" value="JAVA-7"/></module>
+    <module name="LocalVariableName"><property name="id" value="JAVA-7"/></module>
+    <module name="LocalFinalVariableName"><property name="id" value="JAVA-7"/></module>
+    <module name="RecordComponentName"><property name="id" value="JAVA-7"/></module>
+    <module name="ConstantName">
+      <property name="id" value="JAVA-7"/>
+      <property name="format" value="^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$"/>
+    </module>
+    <module name="PackageName">
+      <property name="id" value="JAVA-7"/>
+      <property name="format" value="^[a-z][a-z0-9]*(\.[a-z][a-z0-9]*)*$"/>
+    </module>
+
+    <!-- JAVA-8: no two capital letters in a row, except in a constant. -->
+    <module name="AbbreviationAsWordInName">
+      <property name="id" value="JAVA-8"/>
+      <property name="allowedAbbreviationLength" value="0"/>
+      <property name="ignoreStaticFinal" value="true"/>
+    </module>
+
+    <!-- JAVA-10: 50 lines per method, blank lines not counted. -->
+    <module name="MethodLength">
+      <property name="id" value="JAVA-10"/>
+      <property name="max" value="50"/>
+      <property name="countEmpty" value="false"/>
+    </module>
+
+    <!-- JAVA-11: 6 parameters per method or constructor; an overriding method is exempt. -->
+    <module name="ParameterNumber">
+      <property name="id" value="JAVA-11"/>
+      <property name="max" value="6"/>
+      <property name="ignoreOverriddenMethods" value="true"/>
+      <property name="tokens" value="METHOD_DEF, CTOR_DEF"/>
+    </module>
+
+    <!-- JAVA-12, JAVA-13 -->
+    <module name="EqualsHashCode"><property name="id" value="JAVA-12"/></module>
+    <module name="StringLiteralEquality"><property name="id" value="JAVA-13"/></module>
+
+    <!-- ERR-3: no empty catch block, unless the variable is "ignored" or "expected". -->
+    <module name="EmptyCatchBlock">
+      <property name="id" value="ERR-3"/>
+      <property name="exceptionVariableName" value="ignored|expected"/>
+    </module>
+
+    <!-- TEST-8: JUnit 5 only (test sources). -->
+    <module name="IllegalImport">
+      <property name="id" value="TEST-8"/>
+      <property name="regexp" value="true"/>
+      <property name="illegalClasses" value="^org\.junit\.(?!jupiter\.|platform\.).*$"/>
+    </module>
+    <!-- TEST-9: AssertJ, not JUnit Assertions or Hamcrest (test sources). -->
+    <module name="IllegalImport">
+      <property name="id" value="TEST-9"/>
+      <property name="regexp" value="true"/>
+      <property name="illegalClasses" value="^org\.junit\.jupiter\.api\.Assertions(\..*)?$, ^org\.hamcrest\..*$"/>
+    </module>
+    <!-- TEST-10: no Thread.sleep (test sources). -->
+    <module name="RegexpSinglelineJava">
+      <property name="id" value="TEST-10"/>
+      <property name="format" value="Thread\.sleep\("/>
+      <property name="ignoreComments" value="true"/>
+      <property name="message" value="Thread.sleep in a test; wait with Awaitility and a bounded timeout."/>
+    </module>
+  </module>
+</module>
