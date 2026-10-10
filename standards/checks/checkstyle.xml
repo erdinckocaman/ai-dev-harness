@@ -104,10 +104,12 @@
       <property name="format" value="^[a-z][a-z0-9]*(\.[a-z][a-z0-9]*)*$"/>
     </module>
 
-    <!-- JAVA-8: no two capital letters in a row, except in a constant. -->
+    <!-- JAVA-8: no two capital letters in a row, except in a constant and in the IT suffix
+         of an integration test class (TEST-4). -->
     <module name="AbbreviationAsWordInName">
       <property name="id" value="JAVA-8"/>
       <property name="allowedAbbreviationLength" value="0"/>
+      <property name="allowedAbbreviations" value="IT"/>
       <property name="ignoreStaticFinal" value="true"/>
     </module>
 

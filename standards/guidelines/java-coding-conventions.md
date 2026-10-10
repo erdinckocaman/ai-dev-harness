@@ -26,7 +26,7 @@ reads the production classes only, unless a rule says otherwise.
   underscore.
 - **JAVA-8** `checkstyle` — Write an abbreviation as a word: `HttpClient`, `orderId`, not
   `HTTPClient`, `orderID`. No two capital letters follow each other in a name, except in a
-  constant.
+  constant and in the `IT` suffix of an integration test class (TEST-4).
 - **JAVA-9** `review` — A name says what a thing is or does, not how. A boolean reads as a
   question: `isActive`, `hasItems`. Do not name a class `*Helper`, `*Util` or `*Manager` when a
   domain name exists.

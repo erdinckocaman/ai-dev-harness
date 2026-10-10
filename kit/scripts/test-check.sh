@@ -555,6 +555,17 @@ EOF
 compile "$r"; commit "$r" "feat: add the order log"
 expect 0 logger-name "All checks passed"
 
+# The IT suffix of an integration test class (TEST-4) is exempt from JAVA-8.
+r=$(new_case it-suffix)
+put "$r/src/test/java/com/example/orders/OrderFlowIT.java" <<'EOF'
+package com.example.orders;
+
+class OrderFlowIT {
+}
+EOF
+compile "$r"; commit "$r" "test: add the order flow test"
+expect 0 it-suffix "All checks passed"
+
 # One seeded violation per ArchUnit rule, each in its own class; one check.sh run.
 r=$(new_case archunit-seeds)
 src="$r/src/main/java/com/example/orders"
