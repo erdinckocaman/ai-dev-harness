@@ -1,8 +1,29 @@
 # ai-dev-harness
 
-A workspace for AI-driven development of Spring Boot services with an AI coding agent (Claude
-Code, Codex, opencode, …). The service repositories stay as the team keeps them; the agent
-instructions, standards, acceptance tests and helper scripts live here.
+An AI coding agent writes code fast, but it does not follow your team's standards unless
+something makes it. Teams also do not want `CLAUDE.md` files, prompts and agent scripts in
+every service repository.
+
+ai-dev-harness is a workspace that sits beside your Spring Boot services. It keeps the agent
+instructions, the coding standards, the acceptance tests and the tickets of each service in one
+place, and the service repositories stay as the team keeps them. A Claude Code hook, the
+standards gate, blocks every edit to a service until the agent has read the guidelines for that
+file. A rule that the agent only reads is a suggestion; this one is enforced.
+
+![The standards gate blocks an edit to a test class until the agent has read the six guidelines that the path routes to](docs/images/standards-gate-blocked.svg)
+
+What you get:
+
+- **The standards gate.** Routes from file paths to guidelines, as data in
+  `standards/gate-routes.txt`. The gate fails closed and has no bypass.
+- **Coding standards.** Guidelines with rule IDs, plus Checkstyle, ArchUnit layer rules and a
+  commit check that run against the service from the harness.
+- **Acceptance tests.** [hurl](https://hurl.dev) suites per service, and scripts that run the
+  service locally and test it.
+- **A skill chain.** Spec → tickets → test-first implementation → code review → pull request.
+  It works with Claude Code, Codex, opencode and other agents that read `AGENTS.md`.
+
+## Layout
 
 ```
 ai-dev-harness/
@@ -25,8 +46,6 @@ ai-dev-harness/
 
 Start an agent session at the root of this repository. The agent reads `AGENTS.md`, then the
 project folder of the service it works on.
-
-The kit came from the standalone `ms-kit` repository.
 
 ## Make your own copy
 

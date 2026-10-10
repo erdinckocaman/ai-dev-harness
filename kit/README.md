@@ -1,4 +1,4 @@
-# ms-kit — an agent-first kit for Spring Boot microservices
+# The kit — agent-first scripts for Spring Boot microservices
 
 A small set of shell scripts and conventions for working on several Spring Boot microservices
 that share one shape, together with an AI coding agent (Claude Code, Codex, opencode, …).
@@ -78,6 +78,8 @@ Inside a project folder the scripts find the project themselves; from anywhere e
 `--project <name>`.
 
 ## Configuration
+
+The variables use the prefix `MS_KIT_` (microservice kit).
 
 | Variable | Default | Meaning |
 |---|---|---|
