@@ -317,6 +317,35 @@ EOF
 compile "$r"; commit "$r" "feat: look up order names"
 expect 1 layer-breach "STRUCT-2"
 
+# STRUCT-2: a service reads its settings from a record in config.
+r=$(new_case service-uses-config)
+put "$r/src/main/java/com/example/orders/config/OrderLimits.java" <<'EOF'
+package com.example.orders.config;
+
+public record OrderLimits(int maxItems) {
+}
+EOF
+put "$r/src/main/java/com/example/orders/service/OrderLimitService.java" <<'EOF'
+package com.example.orders.service;
+
+import com.example.orders.config.OrderLimits;
+
+public class OrderLimitService {
+
+    private final OrderLimits limits;
+
+    public OrderLimitService(OrderLimits limits) {
+        this.limits = limits;
+    }
+
+    public boolean allows(int items) {
+        return items <= limits.maxItems();
+    }
+}
+EOF
+compile "$r"; commit "$r" "feat: limit the order items"
+expect 0 service-uses-config "All checks passed"
+
 r=$(new_case repository-placement)
 put "$r/src/main/java/com/example/orders/service/OrderRepository.java" <<'EOF'
 package com.example.orders.service;
