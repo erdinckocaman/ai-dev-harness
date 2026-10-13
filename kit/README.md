@@ -3,9 +3,9 @@
 A small set of shell scripts and conventions for working on several Spring Boot microservices
 that share one shape, together with an AI coding agent (Claude Code, Codex, opencode, …).
 
-The kit does not live in any service repository. It lives in a separate **workspace** — a git
-repository of your own that also holds the agent instructions, the acceptance tests and the
-notes for each service. The service repositories stay exactly as the team keeps them.
+The kit is one part of the ai-dev-harness **workspace**, next to `standards/`, `hooks/` and
+`projects/`. It does not live in any service repository. The service repositories stay exactly
+as the team keeps them.
 
 ## The four ideas
 
@@ -47,7 +47,7 @@ kit/
   examples/projects/sample-service/   # a complete service project to copy
 ```
 
-The workspace that holds the kit is the `ai-dev-harness` repository:
+The scripts work on the project folders under `projects/` of the harness:
 
 ```
 ai-dev-harness/
@@ -83,7 +83,6 @@ The variables use the prefix `MS_KIT_` (microservice kit).
 
 | Variable | Default | Meaning |
 |---|---|---|
-| `MS_KIT_PROJECTS_DIR` | `projects/` next to the kit folder | Where the service projects live |
 | `MS_KIT_ENV_FILE` | `~/.ms-kit/local.env` | The developer env file that `run-local.sh` loads |
 | `MS_KIT_JDK` | `21` | The JDK version the build pins |
 

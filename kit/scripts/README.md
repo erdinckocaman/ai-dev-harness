@@ -6,8 +6,8 @@ repositories, so no tooling file is committed to a source repository
 
 ## Choosing the project
 
-Every script works on one service project, `<projects>/<name>/`, and reads its `service.env`.
-`<projects>` is `MS_KIT_PROJECTS_DIR`, by default the `projects/` folder next to the kit folder.
+Every script works on one service project, `projects/<name>/` of the harness, and reads its
+`service.env`.
 
 - `--project <name>` names it, from anywhere;
 - without the flag, the script uses the project whose folder holds the working directory;

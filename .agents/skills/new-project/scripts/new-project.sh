@@ -24,8 +24,7 @@
 #   --name <project>    The project folder name. Default: the project whose service.env names
 #                       this repository, else the repository folder name.
 #
-# The projects folder is MS_KIT_PROJECTS_DIR, by default projects/ of the harness that holds
-# this script (the same default as the kit scripts).
+# The projects folder is projects/ of the harness that holds this script.
 # Exit status: 0 done, 1 stopped before any write, 2 usage error, 3 a write failed (a second
 # run creates what is still absent).
 
@@ -34,7 +33,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd -P)"
 HARNESS_ROOT="$(cd "$SCRIPT_DIR/../../../.." && pwd -P)"
 EXAMPLE="$HARNESS_ROOT/kit/examples/projects/sample-service"
-PROJECTS_DIR="${MS_KIT_PROJECTS_DIR:-$HARNESS_ROOT/projects}"
+PROJECTS_DIR="$HARNESS_ROOT/projects"
 # The one service.env parser and key list (service_env_get, service_env_var).
 # shellcheck source=../../../../kit/scripts/lib/service-env.sh
 source "$HARNESS_ROOT/kit/scripts/lib/service-env.sh"

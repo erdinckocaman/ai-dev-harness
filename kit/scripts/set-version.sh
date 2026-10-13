@@ -57,8 +57,8 @@ Usage:
                                    1.2.5 -> bump major  -> 2.0.0
 
 Options:
-  --project <name>  The service project (a folder under MS_KIT_PROJECTS_DIR, with a
-                    service.env). Default: the project the working directory is in.
+  --project <name>  The service project (a folder under projects/ of the harness,
+                    with a service.env). Default: the project the working directory is in.
   --repo <path>     The source repository. Default: SOURCE_REPO of service.env.
 
 Edits pom.xml files and the Helm Chart.yaml appVersion only — no git, no maven,
