@@ -9,13 +9,12 @@ as the team keeps them.
 
 ## The four ideas
 
-1. **The workspace sits beside the code, not inside it.** `AGENTS.md`, `CLAUDE.md`, acceptance
-   suites and helper scripts are never committed to a service repository. One developer can
-   work agent-first without asking the whole team to adopt AI-tool files.
-   See [`WORKFLOW.md`](WORKFLOW.md).
+1. **The workspace sits beside the code, not inside it.** No AI-tool file, suite or script is
+   committed to a service repository ([`WORKFLOW.md`](WORKFLOW.md) invariant 2,
+   [ADR-0001](../docs/adr/0001-workspace-beside-the-code.md)).
 2. **One kit, not a copied template.** Each service gets a project folder with a small
-   `service.env` (repository path, port, container module, main class, …). Every script takes
-   `--project <name>`. A fix to a script reaches every service at once; copies would drift.
+   `service.env`, and every script takes `--project <name>`
+   ([ADR-0002](../docs/adr/0002-one-kit-not-a-copied-template.md)).
 3. **Scripts that do not lie.** Each script exists because a plain command reported success
    when something was wrong:
    - `run-local.sh` — with `spring-boot-devtools`, Maven prints `BUILD SUCCESS` even when the
