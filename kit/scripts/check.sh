@@ -48,7 +48,7 @@ usage() {
 Usage:
   check.sh [--project <name>] [--repo <path>]
 
-  --project  The service project (a folder under MS_KIT_PROJECTS_DIR, with a service.env).
+  --project  The service project (a folder under projects/, with a service.env).
              Default: the project the working directory is in.
   --repo     The source repository. Default: SOURCE_REPO of the project's service.env.
 

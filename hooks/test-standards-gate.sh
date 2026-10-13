@@ -156,7 +156,7 @@ check_kind "main java" k1 "$ALPHA/orders-core/src/main/java/com/example/orders/w
 check_kind "test java" k2 "$ALPHA/src/test/java/com/example/orders/service/OrderServiceTest.java" \
   "$BASE guidelines/java-coding-conventions.md $TESTING"
 check_kind "test-named class under main" k3 "$ALPHA/src/main/java/com/example/FakeClockIT.java" \
-  "$BASE guidelines/java-coding-conventions.md guidelines/project-structure.md $TESTING"
+  "$BASE guidelines/java-coding-conventions.md guidelines/project-structure.md"
 check_kind "plain sql" k4 "$ALPHA/src/test/resources/seed-data.sql" \
   "$BASE guidelines/database-and-flyway.md"
 check_kind "migration" k5 "$ALPHA/src/main/resources/db/migration/V202610081200__create_orders.sql" \

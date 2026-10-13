@@ -48,8 +48,8 @@ Usage: $(basename "$0") [OPTIONS]
 Start a Spring Boot microservice locally by loading variables from an env file.
 
 Options:
-  --project <name>  The service project (a folder under MS_KIT_PROJECTS_DIR, with a
-                    service.env). Default: the project the working directory is in.
+  --project <name>  The service project (a folder under projects/ of the harness,
+                    with a service.env). Default: the project the working directory is in.
   --env <path>      Path to the env file (KEY=VALUE pairs).
                     Default: \$MS_KIT_ENV_FILE, else ~/.ms-kit/local.env
   --profile <name>  Spring profile to activate (default: local)

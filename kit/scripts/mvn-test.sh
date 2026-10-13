@@ -50,7 +50,7 @@ Usage:
   <module>   Module directory name (e.g. orders-domain), path relative
              to the repo root, or Maven selector (:artifactId).
   --am       Also build the modules <module> depends on (avoids stale sibling jars).
-  --project  The service project (a folder under MS_KIT_PROJECTS_DIR, with a service.env).
+  --project  The service project (a folder under projects/, with a service.env).
              Default: the project the working directory is in.
   --repo     The source repository. Default: SOURCE_REPO of the project's service.env.
 

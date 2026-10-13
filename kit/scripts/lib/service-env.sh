@@ -2,9 +2,10 @@
 # load its service.env.
 #
 # A script calls `load_service_env "<--project value or empty>" KEY...` after it
-# has parsed its arguments. The project is <projects>/<name>/, where <projects>
-# is MS_KIT_PROJECTS_DIR (default: projects/ next to the kit folder): the
+# has parsed its arguments. The project is projects/<name>/ of the harness: the
 # --project value, or else the project whose folder holds the working directory.
+# MS_KIT_PROJECTS_DIR moves projects/ for the kit tests (kit/scripts/test-check.sh)
+# only; it is not a user setting, and the standards gate does not read it.
 # Each KEY that follows must have a value in service.env.
 #
 # On return, project_name and project_dir are set, and each service.env key is
