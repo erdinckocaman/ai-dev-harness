@@ -60,7 +60,7 @@ not replace the other file.
 ## Changing the standards
 
 - A new guideline gets a row in the table above. If its trigger is path-certain (extension,
-  source root, test class suffix, migration folder), it also gets a row in `gate-routes.txt`
+  source root, migration folder), it also gets a row in `gate-routes.txt`
   (`docs/adr/0003-gate-path-certain-rules-only.md`).
 - A rule with a tool tag gets its check in the same change. A rule that has no check yet is
   tagged `review` until it has one. The values of the checks (limits, patterns, the layer

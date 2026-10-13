@@ -21,9 +21,9 @@
 # A '*' row is the base set: every guarded edit requires it, and the gate's
 # fail-closed branch (path unknown) requires only the '*' rows.
 #
-# Add a row only for a path-certain rule: the extension, the source root, a
-# test class suffix, the migration folder (docs/adr/0003). A route on the kind
-# of change stays in the GUIDELINES.md table only.
+# Add a row only for a path-certain rule: the extension, the source root, the
+# migration folder (docs/adr/0003). A route on the kind of change stays in the
+# GUIDELINES.md table only.
 #
 # Check: bash standards/check-routes.sh (tested by standards/test-check-routes.sh).
 
@@ -39,19 +39,11 @@
 */pom.xml                   | guidelines/project-structure.md        | you are editing the build: modules, dependencies, versions
 */src/main/resources/application* | guidelines/project-structure.md  | you are editing application configuration: profiles, properties, secrets
 
-# Test code: the path proves a test, not its kind, so all three apply.
+# Test code: the test source root proves a test, not its kind, so all three apply.
+# A class name suffix proves nothing: a test-named class under src/main is production code.
 */src/test/*.java           | guidelines/testing-strategy.md         | you are editing a test: which kind of test, naming, structure, test data
 */src/test/*.java           | guidelines/unit-testing.md             | you are editing a test: what a unit test isolates and what it may not touch
 */src/test/*.java           | guidelines/integration-testing.md      | you are editing a test: Spring contexts, containers, data setup
-*Test.java                  | guidelines/testing-strategy.md         | you are editing a test class: which kind of test, naming, structure, test data
-*Test.java                  | guidelines/unit-testing.md             | you are editing a test class: what a unit test isolates and what it may not touch
-*Test.java                  | guidelines/integration-testing.md      | you are editing a test class: Spring contexts, containers, data setup
-*Tests.java                 | guidelines/testing-strategy.md         | you are editing a test class: which kind of test, naming, structure, test data
-*Tests.java                 | guidelines/unit-testing.md             | you are editing a test class: what a unit test isolates and what it may not touch
-*Tests.java                 | guidelines/integration-testing.md      | you are editing a test class: Spring contexts, containers, data setup
-*IT.java                    | guidelines/testing-strategy.md         | you are editing an integration test class: which kind of test, naming, structure
-*IT.java                    | guidelines/unit-testing.md             | you are editing an integration test class: where the unit/integration line is
-*IT.java                    | guidelines/integration-testing.md      | you are editing an integration test class: Spring contexts, containers, data setup
 
 # SQL and migrations.
 *.sql                       | guidelines/database-and-flyway.md      | you are editing a .sql file: naming, keys, column types, indexes
